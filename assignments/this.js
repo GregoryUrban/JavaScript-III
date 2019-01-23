@@ -36,20 +36,46 @@ const redCarrier = {//object literal
 // Principle 3
 
 // code example for New Binding
-const yellowCarrier = {
-  name: 'Sprint'
+function RetailPerson(greeter){ //capital shows its a constructor
+  this.greeter = greeter; //key value pair will have newman
+  this.greeting = 'Hello'; //basically hobbit object
+  this.speak = function() {
+    console.log(`${this.greeting}, ${this.greeter}`)
+  }
 }
+
+// const jerry = {
+// name: 'Greg'  
+// }
+
+const customer = new RetailPerson(`SneakyRep`);
+const sneakyrep = new RetailPerson(`customer`);
+
+console.log(customer);
+
+sneakyrep.speak();
+customer.speak();
+
+
+
+
+
+
+// this is old
+// const yellowCarrier = {
+//   name: 'Sprint'
+// }
   
-  const brands = ['cheap', 'fast', 'reliable']; /// these are separated individually by using .apply below
+//   const brands = ['cheap', 'fast', 'reliable']; /// these are separated individually by using .apply below
   
-  function introduce(brands1, brands2, brands3) {
-      "use strict" //this keeps it from window binding
-      console.log(`Hello! We are ${this.name}, we offer our customers ${brands1}, ${brands2}, and ${brands3} service`)
-    }
-    // how can we bind?? With a method (function in a function)
-    // bind is to use this later! It has the same ability as call
-    const useLater = introduce.bind(yellowCarrier,...brands)
-    // useLater();
+//   function introduce(brands1, brands2, brands3) {
+//       "use strict" //this keeps it from window binding
+//       console.log(`Hello! We are ${this.name}, we offer our customers ${brands1}, ${brands2}, and ${brands3} service`)
+//     }
+//     // how can we bind?? With a method (function in a function)
+//     // bind is to use this later! It has the same ability as call
+//     const useLater = introduce.bind(yellowCarrier,...brands)
+//     // useLater();
 
 
 
