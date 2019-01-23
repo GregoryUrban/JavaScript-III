@@ -18,12 +18,11 @@
 function GameObject(attributes) {
   this.createdAt = attributes.createdAt;
   this.dimensions = attributes.dimensions;
-  // this.destroy = attributes.destroy;
-  
-}//parent
+  }//parent
+
 GameObject.prototype.destroy = function() {
-  console.log(`${this.name} was removed from the game`)
-}//
+  return (`${this.name} was removed from the game`)
+}
 
 /*
   === CharacterStats ===
@@ -32,21 +31,21 @@ GameObject.prototype.destroy = function() {
   * takeDamage() // prototype method -> returns the string '<object name> took damage.'
   * should inherit destroy() from GameObject's prototype
 */
-function CharacterStats(attributes) {
-  this.healthPoints = attributes.healthPoints;
-  this.name = attributes.name;
-  // this.destroy = attributes.destroy;
-  
-}//parent
+debugger;
+function CharacterStats(charAttributes) {
+  GameObject.call(this, charAttributes);
+  this.healthPoints = charAttributes.healthPoints;
+  this.name = charAttributes.name;
+}//child
+
+CharacterStats.prototype = Object.create(GameObject.prototype); //create object FIRST
+
 CharacterStats.prototype.takeDamage = function() {
-  console.log(`${this.name} took damage`)
+  return (`${this.name} took damage`)
 }
-
-function CharacterStats(childAttributes){
-  CharacterStats.call(this, childAttributes)// oject oriented programming - borrowing from another constructor
- }
-
-CharacterStats.prototype = Object.create(GameObject.prototype);
+// function CharacterStats(characterAttributes){
+//   GameObject.call(this, characterAttributes)// object oriented programming - borrowing from another constructor
+//  }
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
   * team
@@ -56,17 +55,17 @@ CharacterStats.prototype = Object.create(GameObject.prototype);
   * should inherit destroy() from GameObject through CharacterStats
   * should inherit takeDamage() from CharacterStats
 */
-function Humanoid(attributes) {
-  this.team = attributes.team;
-  this.weapons = attributes.weapons;
-  this.language = attributes.language;
-   
-}//parent 
-Humanoid.prototype.takeDamage = function() {
-  console.log(`${this.name} took damage`)
-}
-Humanoid.prototype = Object.create(CharacterStats.prototype);
+function Humanoid(humAttributes) {
+  CharacterStats.call(this, humAttributes);
+  this.team = humAttributes.team;
+  this.weapons = humAttributes.weapons;
+  this.language = humAttributes.language;
+}//grandchild
 
+Humanoid.prototype = Object.create(CharacterStats.prototype); 
+Humanoid.prototype.greet = function() {
+  return (`${this.name} offers a greeting in ${this.language}`)
+}
 
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
@@ -74,7 +73,7 @@ Humanoid.prototype = Object.create(CharacterStats.prototype);
   * Instances of CharacterStats should have all of the same properties as GameObject.
 */
 
-// Test you work by un-commenting these 3 objects and the list of console logs below:
+// Test your work by un-commenting these 3 objects and the list of console logs below:
 
 // /*
   const mage = new Humanoid({
@@ -143,3 +142,6 @@ Humanoid.prototype = Object.create(CharacterStats.prototype);
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+
+  
