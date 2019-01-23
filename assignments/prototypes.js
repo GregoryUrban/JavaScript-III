@@ -143,5 +143,89 @@ Humanoid.prototype.greet = function() {
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
 
+  
+  function Hero (heroAttributes) {
+    Humanoid.call(this, heroAttributes);
+    this.abilities = heroAttributes.abilities;
+  }//great-grandchild
+  Hero.prototype = Object.create(Humanoid.prototype); 
+  
+  Hero.prototype.attack = function() {
+    return (`${this.name} attacked with ${this.abilities}`);
+  }
+
+  function Villian (vilAttributes) {
+    Hero.call(this, vilAttributes);
+    // this.abilities = vilAttributes.abilities;
+  }//great-grandchild
+  Villian.prototype = Object.create(Hero.prototype); 
+  
+  Villian.prototype.attack = function() {
+    return (`${this.name} attacked with ${this.abilities}`);
+  }
+  
 
   
+  const hero = new Hero({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 5,
+    },
+    healthPoints: 7,
+    name: 'Kami',
+    team: 'Urban',
+    weapons: [
+      'Martial Arts',
+      'Saw',
+    ],
+    language: 'Copiague',
+    abilities: 'Atomic Punch',
+  });
+
+  const villian = new Villian({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 5,
+    name: 'Tarantula',
+    team: 'Arachnids',
+    weapons: [
+      'Creepiness',
+      'Fangs',
+    ],
+    language: 'Cobweb',
+    abilities: 'Hypnotize',
+
+  });
+
+
+  console.log(hero.createdAt); 
+  console.log(hero.dimensions); 
+  console.log(hero.healthPoints);
+  console.log(hero.name); 
+  console.log(hero.team); 
+  console.log(hero.weapons); 
+  console.log(hero.language); 
+  console.log(hero.greet()); 
+  console.log(hero.takeDamage());
+  console.log(hero.destroy()); 
+  console.log(hero.attack()); 
+
+
+  console.log(villian.createdAt); 
+  console.log(villian.dimensions); 
+  console.log(villian.healthPoints);
+  console.log(villian.name); 
+  console.log(villian.team); 
+  console.log(villian.weapons); 
+  console.log(villian.language); 
+  console.log(villian.greet()); 
+  console.log(villian.takeDamage());
+  console.log(villian.destroy()); 
+  console.log(villian.attack()); 
+
