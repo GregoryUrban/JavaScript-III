@@ -2,8 +2,9 @@
 * in your own words. explain the four principle for the "this" keyword below.
 *
 This Answer:
-This allows us to reference objects - The window is the forest, the objects are trees. .This allows us to reference the trees.
-
+This allows us to reference objects - The window is the
+forest, the objects are trees. .This allows us to reference the trees.
+end of
 * 1. Window binding
 * 2. Implicit
 * 3. Explicit Binding
@@ -41,18 +42,16 @@ function RetailPerson(greeter){
   this.greeter = greeter; 
   this.greeting = 'Hello';
   this.speak = function() {
-    console.log(`${this.greeting}, ${this.greeter}`)
+    
+    return `${this.greeting}, ${this.greeter}`
   }
 }
 
 const customer = new RetailPerson(`SneakyRep`);
 const sneakyrep = new RetailPerson(`customer`);
 
-console.log(customer);
-
-sneakyrep.speak();
-customer.speak();
-
+console.log(customer.speak());
+console.log(sneakyrep.speak());
 
 // Principle 4
 

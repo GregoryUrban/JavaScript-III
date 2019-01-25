@@ -31,7 +31,6 @@ GameObject.prototype.destroy = function() {
   * takeDamage() // prototype method -> returns the string '<object name> took damage.'
   * should inherit destroy() from GameObject's prototype
 */
-debugger;
 function CharacterStats(charAttributes) {
   GameObject.call(this, charAttributes);
   this.healthPoints = charAttributes.healthPoints;
@@ -43,9 +42,6 @@ CharacterStats.prototype = Object.create(GameObject.prototype); //create object 
 CharacterStats.prototype.takeDamage = function() {
   return (`${this.name} took damage`)
 }
-// function CharacterStats(characterAttributes){
-//   GameObject.call(this, characterAttributes)// object oriented programming - borrowing from another constructor
-//  }
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
   * team
@@ -211,6 +207,7 @@ Humanoid.prototype.greet = function() {
   console.log(hero.team); 
   console.log(hero.weapons); 
   console.log(hero.language); 
+  console.log(hero.abilities); 
   console.log(hero.greet()); 
   console.log(hero.takeDamage());
   console.log(hero.destroy()); 
@@ -223,7 +220,8 @@ Humanoid.prototype.greet = function() {
   console.log(villian.name); 
   console.log(villian.team); 
   console.log(villian.weapons); 
-  console.log(villian.language); 
+  console.log(villian.language);
+  console.log(villian.abilities); 
   console.log(villian.greet()); 
   console.log(villian.takeDamage());
   console.log(villian.destroy()); 
